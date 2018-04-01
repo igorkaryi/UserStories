@@ -81,7 +81,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let detailVC = segue.destination as! DetailViewController
                 var dict = repoArray[indexPath.row]
                 detailVC.name = (dict["name"] as? String)!
-                detailVC.language = (dict["language"] as? String)!
+                if dict["language"] as? String == nil {
+                    print("nil")
+                    detailVC.language = "Не определен"
+                } else {
+                    detailVC.language = (dict["language"] as? String)!
+                }
                 detailVC.stars = "\(dict["stargazers_count"] as! Int)"
             }
         }
